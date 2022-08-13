@@ -18,14 +18,14 @@ function HomeIconsSection() {
       <div className="container mx-auto max-w-screen-xl px-4">
         <nav className="flex justify-evenly">
           {shortcuts.map((shortcut) => (
-            <Link href={shortcut.link} key={uuid4()}>
-              <div className="group flex w-full cursor-pointer flex-col items-center justify-evenly pb-10 text-white">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-light p-1 group-hover:bg-secondary-dark">
-                  <shortcut.icon className="h-6 w-6 text-white" />
-                </div>
-                <span className="font-medium">{shortcut.name}</span>
+            // <Link href={shortcut.link} >
+            <div className="group flex w-full cursor-pointer flex-col items-center justify-evenly pb-10 text-white" key={uuid4()}>
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-light p-1 group-hover:bg-secondary-dark">
+                <shortcut.icon className="h-6 w-6 text-white" />
               </div>
-            </Link>
+              <span className="font-medium">{shortcut.name}</span>
+            </div>
+            // </Link>
           ))}
         </nav>
       </div>

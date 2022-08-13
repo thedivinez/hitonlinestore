@@ -1,25 +1,34 @@
 import Link from "next/link"
 import Image from "next/image"
+import { FormEvent } from "react";
+import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid"
+import Footer from "./components/Footer";
 import { GoChevronRight } from "react-icons/go"
+import NewsLetter from "./components/NewsLetter";
+import StoreHeader from "./components/StoreHeader";
 import useEcommerceState from "../hooks/useEcommerceState";
 
 function Checkout() {
   const cart = useEcommerceState((state) => state.cart);
   const totalCartPrice = useEcommerceState(state => state.totalCartPrice);
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    toast.success("Order Received")
+  }
 
   return (
     <section className="bg-grad min-h-screen flex flex-col justify-between">
-      {/* <NavBar className="relative z-50" selected="store" /> */}
+      <StoreHeader />
       <section className="py-5 sm:py-7 bg-secondary-dark">
         <div className="max-w-screen-xl mx-auto text-gray-300">
           <ol className="inline-flex flex-wrap space-x-1 md:space-x-3 items-center">
             <li className="inline-flex items-center">
-              <Link href="/store"><span className="hover:text-blue-600 cursor-pointer">Store</span></Link>
+              <Link href="/"><span className="hover:text-blue-600 cursor-pointer">Store</span></Link>
               <GoChevronRight className="ml-3" />
             </li>
             <li className="inline-flex items-center" aria-current="page">
-              <Link href="/store/cart"><span className="hover:text-blue-600 cursor-pointer">Cart</span></Link>
+              <Link href="/cart"><span className="hover:text-blue-600 cursor-pointer">Cart</span></Link>
               <GoChevronRight className="ml-3" />
             </li>
             <li className="inline-flex items-center"> Checkout </li>
@@ -28,7 +37,7 @@ function Checkout() {
       </section>
       <main className="container mx-auto my-10">
         <div className="flex flex-col md:flex-row gap-4 lg:gap-8">
-          <main className="md:w-2/3">
+          <form className="md:w-2/3" onSubmit={handleSubmit}>
             <article className="bg-secondary-dark shadow-sm rounded p-4 lg:p-6 mb-5 text-white">
               <h2 className="text-xl font-semibold mb-5">Checkout</h2>
               <div className="grid grid-cols-2 gap-x-3">
@@ -106,17 +115,14 @@ function Checkout() {
               </div>
 
               <div className="flex justify-end space-x-2">
-                <Link href="/store/cart">
+                <Link href="/cart">
                   <button className="px-5 py-2 inline-block text-gray-700 bg-gray-300 shadow-sm border border-secondary-light rounded-md">  Back  </button>
                 </Link>
-                <Link href="/store/cart">
-                  <button className="px-5 py-2 inline-block text-white bg-secondary-light border border-transparent rounded-md hover:bg-secondary-light/80">  Continue </button>
-                </Link>
+                <button type="submit" className="px-5 py-2 inline-block text-white bg-secondary-light border border-transparent rounded-md hover:bg-secondary-light/80"> Continue </button>
               </div>
-
             </article>
 
-          </main>
+          </form>
           <aside className="md:w-1/3">
             <article className="text-gray-200 max-w-28">
               <h2 className="text-lg font-semibold mb-3">Summary</h2>
@@ -153,7 +159,8 @@ function Checkout() {
           </aside>
         </div>
       </main>
-      {/* <Footer /> */}
+      <NewsLetter />
+      <Footer />
     </section>
   )
 }

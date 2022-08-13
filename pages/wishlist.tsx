@@ -1,7 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import { v4 as uuidv4 } from "uuid"
+import Footer from "./components/Footer";
 import { FiShoppingCart } from "react-icons/fi";
+import NewsLetter from "./components/NewsLetter";
 import StoreHeader from "./components/StoreHeader"
 import useEcommerceState, { Product } from "../hooks/useEcommerceState";
 
@@ -20,9 +22,8 @@ function WishList() {
 
   return (
     <section className="bg-grad min-h-screen flex flex-col justify-between">
-      {/* <NavBar className="relative z-50" selected="store" /> */}
+      <StoreHeader />
       <section className="flex flex-col h-full w-full flex-1">
-        <StoreHeader />
         <div className="container max-w-screen-xl mx-auto px-4 mt-10">
           <div className="flex flex-col md:flex-row gap-4">
             <main className="md:w-3/4">
@@ -75,7 +76,6 @@ function WishList() {
                       <span>${product.price * product.quantity!}</span>
                     </li>
                   })}
-
                   <li className="text-lg font-bold border-t flex justify-between mt-3 pt-3">
                     <span>Total price:</span>
                     <span>${totalWishListPrice}</span>
@@ -94,7 +94,8 @@ function WishList() {
           </div>
         </div>
       </section>
-      {/* <Footer /> */}
+      <NewsLetter />
+      <Footer />
     </section >
   )
 }

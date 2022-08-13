@@ -2,8 +2,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { NextPage } from "next";
 import { v4 as uuidv4 } from "uuid"
+import Footer from "./components/Footer";
 import { AiOutlineHeart } from "react-icons/ai";
-import StoreHeader from "./components/StoreHeader"
+import NewsLetter from "./components/NewsLetter";
+import StoreHeader from "./components/StoreHeader";
 import useEcommerceState, { Product } from "../hooks/useEcommerceState";
 
 const Cart: NextPage = () => {
@@ -21,9 +23,8 @@ const Cart: NextPage = () => {
 
   return (
     <section className="bg-grad min-h-screen flex flex-col justify-between">
-      {/* <NavBar className="relative z-50" selected="store" /> */}
+      <StoreHeader />
       <section className="flex flex-col h-full w-full flex-1">
-        <StoreHeader />
         <div className="container max-w-screen-xl mx-auto px-4 mt-10">
           <div className="flex flex-col md:flex-row gap-4">
             <main className="md:w-3/4">
@@ -94,7 +95,8 @@ const Cart: NextPage = () => {
           </div>
         </div>
       </section>
-      {/* <Footer /> */}
+      <NewsLetter />
+      <Footer />
     </section >
   )
 }
